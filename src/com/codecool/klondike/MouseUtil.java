@@ -19,8 +19,6 @@ import java.util.List;
 
 public class MouseUtil {
 
-    public static Game myGame;
-
     public static void slideBack(Card card) {
         double sourceX = card.getLayoutX() + card.getTranslateX();
         double sourceY = card.getLayoutY() + card.getTranslateY();
@@ -62,7 +60,7 @@ public class MouseUtil {
                         currentCard.getDropShadow().setOffsetX(0);
                         currentCard.getDropShadow().setOffsetY(0);
                     });
-            boolean win = myGame.isGameWon();
+/*            boolean win = myGame.isGameWon();
             if (win) {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Congratulations!");
@@ -72,7 +70,7 @@ public class MouseUtil {
                 alert.setOnCloseRequest((event) -> {
                     System.exit(0);
                 });
-            }
+            }*/
         }
     }
 
