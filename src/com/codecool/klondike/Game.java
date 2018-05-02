@@ -88,9 +88,14 @@ public class Game extends Pane {
     };
 
     public boolean isGameWon() {
-        //TODO
+        int cardNum = 0;
+        for (int i = 0; i < foundationPiles.size(); i++) {
+            cardNum++;
+            if (cardNum == 52) return true;
+        }
         return false;
     }
+
 
     public Game() {
         deck = Card.createNewDeck();
