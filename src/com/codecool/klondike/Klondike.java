@@ -13,7 +13,7 @@ public class Klondike extends Application {
     private static final double WINDOW_WIDTH = 1400;
     private static final double WINDOW_HEIGHT = 900;
     private static String cardBack = "card_images/card_back.png";
-    private static String backgroundPic = "/table/green.png";
+    private static String backgroundPic = "/table/red.png";
 
     public static void main(String[] args) {
         launch(args);
@@ -43,7 +43,9 @@ public class Klondike extends Application {
         MenuItem restart = new MenuItem("Restart");
         MenuItem exit = new MenuItem("Exit");
 
-        MenuItem theme1 = new MenuItem("Space Stone");
+        MenuItem original = new MenuItem("Red");
+        MenuItem theme1 = new MenuItem("Blue");
+        MenuItem theme2 = new MenuItem("Green");
 
         menuBar.getMenus().addAll(gameMenu, themeMenu);
         menuBar.setStyle("fx-padding: 1  5 1 5");
@@ -51,7 +53,9 @@ public class Klondike extends Application {
 
         gameMenu.getItems().add(restart);
         gameMenu.getItems().add(exit);
+        themeMenu.getItems().add(original);
         themeMenu.getItems().add(theme1);
+        themeMenu.getItems().add(theme2);
 
         game.getChildren().add(menuBar);
 
@@ -66,6 +70,19 @@ public class Klondike extends Application {
         theme1.setOnAction((event) -> {
             cardBack = "/theme/cb1.png";
             backgroundPic = "/theme/bg1.png";
+            start(primaryStage);
+        });
+
+        theme2.setOnAction((event) -> {
+            cardBack = "/theme/cb2.png";
+            backgroundPic = "/theme/bg2.png";
+            start(primaryStage);
+        });
+
+
+        original.setOnAction((event) -> {
+            cardBack = "card_images/card_back.png";
+            backgroundPic = "/table/red.png";
             start(primaryStage);
         });
 
