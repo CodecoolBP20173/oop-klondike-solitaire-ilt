@@ -83,7 +83,7 @@ public class Game extends Pane {
             handleValidMove(card, pile);
         } else {
             draggedCards.forEach(MouseUtil::slideBack);
-            draggedCards = null;
+            draggedCards.clear();
         }
     };
 
@@ -91,7 +91,7 @@ public class Game extends Pane {
         int cardNum = 0;
         for (int i = 0; i < foundationPiles.size(); i++) {
             cardNum++;
-            if (cardNum == 52) return true;
+            if (cardNum == 2) return true;
         }
         return false;
     }
@@ -156,30 +156,30 @@ public class Game extends Pane {
     private void initPiles() {
         stockPile = new Pile(Pile.PileType.STOCK, "Stock", STOCK_GAP);
         stockPile.setBlurredBackground();
-        stockPile.setLayoutX(95);
-        stockPile.setLayoutY(20);
+        stockPile.setLayoutX(60);
+        stockPile.setLayoutY(50);
         stockPile.setOnMouseClicked(stockReverseCardsHandler);
         getChildren().add(stockPile);
 
         discardPile = new Pile(Pile.PileType.DISCARD, "Discard", STOCK_GAP);
         discardPile.setBlurredBackground();
-        discardPile.setLayoutX(285);
-        discardPile.setLayoutY(20);
+        discardPile.setLayoutX(250);
+        discardPile.setLayoutY(50);
         getChildren().add(discardPile);
 
         for (int i = 0; i < 4; i++) {
             Pile foundationPile = new Pile(Pile.PileType.FOUNDATION, "Foundation " + i, FOUNDATION_GAP);
             foundationPile.setBlurredBackground();
-            foundationPile.setLayoutX(610 + i * 180);
-            foundationPile.setLayoutY(20);
+            foundationPile.setLayoutX(575 + i * 180);
+            foundationPile.setLayoutY(50);
             foundationPiles.add(foundationPile);
             getChildren().add(foundationPile);
         }
         for (int i = 0; i < 7; i++) {
             Pile tableauPile = new Pile(Pile.PileType.TABLEAU, "Tableau " + i, TABLEAU_GAP);
             tableauPile.setBlurredBackground();
-            tableauPile.setLayoutX(95 + i * 180);
-            tableauPile.setLayoutY(275);
+            tableauPile.setLayoutX(60 + i * 180);
+            tableauPile.setLayoutY(315);
             tableauPiles.add(tableauPile);
             getChildren().add(tableauPile);
         }
