@@ -103,6 +103,7 @@ public class Game extends Pane {
         dealCards();
     }
 
+
     public void addMouseEventHandlers(Card card) {
         card.setOnMousePressed(onMousePressedHandler);
         card.setOnMouseDragged(onMouseDraggedHandler);
@@ -179,21 +180,36 @@ public class Game extends Pane {
             Pile tableauPile = new Pile(Pile.PileType.TABLEAU, "Tableau " + i, TABLEAU_GAP);
             tableauPile.setBlurredBackground();
             tableauPile.setLayoutX(60 + i * 180);
-            tableauPile.setLayoutY(550);
+            tableauPile.setLayoutY(367);
             tableauPiles.add(tableauPile);
             getChildren().add(tableauPile);
         }
     }
 
+
     public void dealCards() {
         Iterator<Card> deckIterator = deck.iterator();
-        //TODO
         deckIterator.forEachRemaining(card -> {
-            stockPile.addCard(card);
+            if (tableauPiles.get(6).numOfCards() < 7) {
+                tableauPiles.get(6).addCard(card);
+            } else if (tableauPiles.get(5).numOfCards() < 6) {
+                tableauPiles.get(5).addCard(card);
+            } else if (tableauPiles.get(4).numOfCards() < 5) {
+                tableauPiles.get(4).addCard(card);
+            } else if (tableauPiles.get(3).numOfCards() < 4) {
+                tableauPiles.get(3).addCard(card);
+            } else if (tableauPiles.get(2).numOfCards() < 3) {
+                tableauPiles.get(2).addCard(card);
+            } else if (tableauPiles.get(1).numOfCards() < 2) {
+                tableauPiles.get(1).addCard(card);
+            } else if (tableauPiles.get(0).numOfCards() < 1) {
+                tableauPiles.get(0).addCard(card);
+            } else {
+                stockPile.addCard(card);
+            }
             addMouseEventHandlers(card);
             getChildren().add(card);
         });
-
     }
 
     public void setTableBackground(Image tableBackground) {
