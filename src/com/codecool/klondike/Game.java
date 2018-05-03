@@ -79,13 +79,20 @@ public class Game extends Pane {
             return;
         Card card = (Card) e.getSource();
         Pile pile = getValidIntersectingPile(card, tableauPiles);
-        //TODO
+        Pile pile1 = getValidIntersectingPile(card, foundationPiles);
         if (pile != null) {
             handleValidMove(card, pile);
-        } else {
+        } else if(pile1 == null) {
             draggedCards.forEach(MouseUtil::slideBack);
             draggedCards.clear();
         }
+        if (pile1 != null) {
+            handleValidMove(card, pile1);
+            return;
+        }
+        draggedCards.forEach(MouseUtil::slideBack);
+        draggedCards.clear();
+
     };
 
     public boolean isGameWon() {
@@ -118,11 +125,12 @@ public class Game extends Pane {
 
     public boolean isMoveValid(Card card, Pile destPile) {
         //TODO
-        if (destPile.isEmpty()){return true;}
+        if (destPile.isEmpty() && destPile.getPileType() == Pile.PileType.TABLEAU){return true;}
         if (destPile.getPileType() == Pile.PileType.STOCK || destPile.getPileType() == Pile.PileType.DISCARD){
             return false;
         }
-        else if(destPile.getPileType() == Pile.PileType.FOUNDATION){
+        else if (destPile.getPileType().equals(Pile.PileType.FOUNDATION)){
+            if (card.getRank().equals(Rank.ACE) && destPile.isEmpty()){return true;}
             if (destPile.getTopCard().getSuit() == card.getSuit() && destPile.getTopCard().getRank().getValue() == (card.getRank().getValue()-1)){
                 return true;
             }
