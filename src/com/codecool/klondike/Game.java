@@ -179,7 +179,7 @@ public class Game extends Pane {
             Pile tableauPile = new Pile(Pile.PileType.TABLEAU, "Tableau " + i, TABLEAU_GAP);
             tableauPile.setBlurredBackground();
             tableauPile.setLayoutX(60 + i * 180);
-            tableauPile.setLayoutY(315);
+            tableauPile.setLayoutY(550);
             tableauPiles.add(tableauPile);
             getChildren().add(tableauPile);
         }
