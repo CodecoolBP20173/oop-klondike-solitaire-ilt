@@ -98,23 +98,23 @@ public class Card extends ImageView {
     public static void loadCardImages(String cardBackTheme) {
         cardBackImage = new Image(cardBackTheme);
         String suitName = "";
-        for (int suit = 1; suit < 5; suit++) {
+        for (Suit suit:Suit.values()) {
             switch (suit) {
-                case 1:
+                case HEARTS:
                     suitName = "hearts";
                     break;
-                case 2:
+                case DIAMONDS:
                     suitName = "diamonds";
                     break;
-                case 3:
+                case SPADES:
                     suitName = "spades";
                     break;
-                case 4:
+                case CLUBS:
                     suitName = "clubs";
                     break;
             }
-            for (int rank = 1; rank < 14; rank++) {
-                String cardName = suitName + rank;
+            for (Rank rank:Rank.values()) {
+                String cardName = suitName + rank.getValue();
                 String cardId = "S" + suit + "R" + rank;
                 String imageFileName = "card_images/" + cardName + ".png";
                 cardFaceImages.put(cardId, new Image(imageFileName));
