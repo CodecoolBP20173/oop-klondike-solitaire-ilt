@@ -16,6 +16,7 @@ import javafx.scene.layout.Pane;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.lang.*;
 
 public class Game extends Pane {
 
@@ -117,7 +118,21 @@ public class Game extends Pane {
 
     public boolean isMoveValid(Card card, Pile destPile) {
         //TODO
-        return true;
+        if (destPile.isEmpty()){return true;}
+        if (destPile.getPileType() == Pile.PileType.STOCK || destPile.getPileType() == Pile.PileType.DISCARD){
+            return false;
+        }
+        else if(destPile.getPileType() == Pile.PileType.FOUNDATION){
+            if (destPile.getTopCard().getSuit() == card.getSuit() && destPile.getTopCard().getRank().getValue() == (card.getRank().getValue()-1)){
+                return true;
+            }
+        }
+        else{
+            if(Card.isOppositeColor(destPile.getTopCard(),card) && destPile.getTopCard().getRank().getValue() == (card.getRank().getValue())+1) {
+                return true;
+            }
+        }
+        return false;
     }
     private Pile getValidIntersectingPile(Card card, List<Pile> piles) {
         Pile result = null;
