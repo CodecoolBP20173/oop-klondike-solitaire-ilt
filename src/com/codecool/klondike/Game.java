@@ -14,6 +14,7 @@ import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.Pane;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -112,6 +113,12 @@ public class Game extends Pane {
 
     public void refillStockFromDiscard() {
         //TODO
+        Collections.reverse(discardPile.getCards());
+        for (Card actCard : discardPile.getCards()) {
+            actCard.flip();
+            stockPile.addCard(actCard);
+        }
+        discardPile.clear();
         System.out.println("Stock refilled from discard pile.");
     }
 
