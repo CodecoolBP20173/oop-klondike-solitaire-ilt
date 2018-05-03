@@ -190,23 +190,28 @@ public class Game extends Pane {
     public void dealCards() {
         Iterator<Card> deckIterator = deck.iterator();
         deckIterator.forEachRemaining(card -> {
-            if (tableauPiles.get(6).numOfCards() < 7) {
+            if (tableauPiles.get(6).numOfCards() < 8) {
                 tableauPiles.get(6).addCard(card);
-            } else if (tableauPiles.get(5).numOfCards() < 6) {
+            } else if (tableauPiles.get(5).numOfCards() < 7) {
                 tableauPiles.get(5).addCard(card);
-            } else if (tableauPiles.get(4).numOfCards() < 5) {
+            } else if (tableauPiles.get(4).numOfCards() < 6) {
                 tableauPiles.get(4).addCard(card);
-            } else if (tableauPiles.get(3).numOfCards() < 4) {
+            } else if (tableauPiles.get(3).numOfCards() < 5) {
                 tableauPiles.get(3).addCard(card);
-            } else if (tableauPiles.get(2).numOfCards() < 3) {
+            } else if (tableauPiles.get(2).numOfCards() < 4) {
                 tableauPiles.get(2).addCard(card);
-            } else if (tableauPiles.get(1).numOfCards() < 2) {
+            } else if (tableauPiles.get(1).numOfCards() < 3) {
                 tableauPiles.get(1).addCard(card);
-            } else if (tableauPiles.get(0).numOfCards() < 1) {
+            } else if (tableauPiles.get(0).numOfCards() < 2) {
                 tableauPiles.get(0).addCard(card);
             } else {
                 stockPile.addCard(card);
+                for(int i = 0; i < tableauPiles.size(); i++) {
+                    Card topCard = tableauPiles.get(i).getTopCard();
+                    topCard.flip();
+                }
             }
+
             addMouseEventHandlers(card);
             getChildren().add(card);
         });
