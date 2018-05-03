@@ -79,13 +79,13 @@ public class Card extends ImageView {
     public static boolean isOppositeColor(Card card1, Card card2) {
         //TODO
         switch (card1.getSuit()) {
-            case 1:
-            case 2:
-                if (card2.getSuit() == 3 || card2.getSuit() == 4) return true;
+            case HEARTS:
+            case DIAMONDS:
+                if (card2.getSuit() == Suit.SPADES || card2.getSuit() == Suit.CLUBS) return true;
                 break;
-            case 3:
-            case 4:
-                if (card2.getSuit() == 1 || card2.getSuit() == 2 ) return true;
+            case SPADES:
+            case CLUBS:
+                if (card2.getSuit() == Suit.HEARTS || card2.getSuit() == Suit.DIAMONDS ) return true;
                 break;
         }
         return false;
